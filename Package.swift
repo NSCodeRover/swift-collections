@@ -1,4 +1,4 @@
-// swift-tools-version:5.10
+// swift-tools-version:5.9
 //===----------------------------------------------------------------------===//
 //
 // This source file is part of the Swift Collections open source project
@@ -171,7 +171,7 @@ extension Array where Element == CustomTarget {
       ] + targets.flatMap { t in
         t.exclude.map { "\(t.name)/\($0)" }
       },
-      sources: targets.map { "\($0.name)" },
+      sources: targets.map { "\(t.name)" },
       swiftSettings: _settings,
       linkerSettings: linkerSettings)
   }
@@ -323,4 +323,4 @@ let package = Package(
   ],
   products: _products,
   targets: _targets
-)
+) 
