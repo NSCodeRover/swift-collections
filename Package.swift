@@ -171,7 +171,7 @@ extension Array where Element == CustomTarget {
       ] + targets.flatMap { t in
         t.exclude.map { "\(t.name)/\($0)" }
       },
-      sources: targets.map { "\(t.name)" },
+      sources: targets.map { $0.name },
       swiftSettings: _settings,
       linkerSettings: linkerSettings)
   }
