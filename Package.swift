@@ -317,7 +317,7 @@ if defines.contains("COLLECTIONS_SINGLE_MODULE") {
 let package = Package(
   name: "swift-collections",
   platforms: [
-    .iOS(.v17),
+    .iOS(.v13),
     .macOS(.v10_15),
     .macCatalyst(.v14),
   ],
