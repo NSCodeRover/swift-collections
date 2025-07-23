@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-  spec.name         = "DequeModule"
+  spec.name         = "SwiftCollections-Deque"
   spec.version      = "1.2.0"
   spec.summary      = "Swift Collections - Deque module"
   spec.description  = <<-DESC
