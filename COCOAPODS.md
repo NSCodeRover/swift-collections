@@ -1,15 +1,40 @@
 # Swift Collections for CocoaPods
 
-This repository provides a CocoaPods-compatible version of the Swift Collections package, forked from [Apple's swift-collections](https://github.com/apple/swift-collections).
+This repository provides CocoaPods support for Apple's Swift Collections package, following the approach pioneered by [liamnichols/swift-collections-specs](https://github.com/liamnichols/swift-collections-specs).
+
+## Overview
+
+The Swift Collections package is officially available only through Swift Package Manager. This repository provides individual CocoaPods pods for each module, making it accessible to projects that use CocoaPods for dependency management.
+
+## Available Pods
+
+### ✅ Published Pods
+
+- **SwiftCollections-Deque** - Double-ended queue backed by a ring buffer
+  - Pod: `SwiftCollections-Deque`
+  - URL: https://cocoapods.org/pods/SwiftCollections-Deque
+  - Version: 1.2.0
+
+### 🚧 In Development
+
+- **SwiftCollections-OrderedCollections** - OrderedSet and OrderedDictionary
+- **SwiftCollections-Collections** - Complete package with all modules
 
 ## Installation
 
-### CocoaPods
+### Using CocoaPods
 
-Add the following to your `Podfile`:
+Add the desired pod to your `Podfile`:
 
 ```ruby
-pod 'swift-collections', :git => 'https://github.com/NSCodeRover/swift-collections.git', :tag => '1.2.0'
+# For Deque functionality
+pod 'SwiftCollections-Deque'
+
+# For OrderedCollections (when available)
+# pod 'SwiftCollections-OrderedCollections'
+
+# For complete package (when available)
+# pod 'SwiftCollections-Collections'
 ```
 
 Then run:
@@ -17,91 +42,84 @@ Then run:
 pod install
 ```
 
-### Using Specific Modules
+### Alternative: Custom Specs Repository
 
-If you only need specific modules, you can import them individually:
+Following the approach from [liamnichols/swift-collections-specs](https://github.com/liamnichols/swift-collections-specs), you can also use a custom specs repository:
 
 ```ruby
-# Only BitCollections (BitSet, BitArray)
-pod 'swift-collections/BitCollections'
+source 'https://github.com/liamnichols/swift-collections-specs'
 
-# Only DequeModule
-pod 'swift-collections/DequeModule'
-
-# Only HashTreeCollections (TreeSet, TreeDictionary)
-pod 'swift-collections/HashTreeCollections'
-
-# Only HeapModule
-pod 'swift-collections/HeapModule'
-
-# Only OrderedCollections (OrderedSet, OrderedDictionary)
-pod 'swift-collections/OrderedCollections'
+target 'YourApp' do
+  pod 'Collections', '~> 1.0.3'
+  pod 'OrderedCollections', '~> 1.0.3'
+  pod 'DequeModule', '~> 1.0.3'
+end
 ```
 
 ## Usage
 
-### Import the Collections module
+### Deque
 
 ```swift
-import Collections
+import SwiftCollections_Deque
 
-// Use all collection types
-var deque: Deque<String> = ["Ted", "Rebecca"]
-deque.prepend("Keeley")
-deque.append("Nathan")
+var deque = Deque<Int>()
+deque.append(1)
+deque.prepend(0)
+deque.append(2)
+
+print(deque.first) // Optional(0)
+print(deque.last)  // Optional(2)
+
+let first = deque.removeFirst() // 0
+let last = deque.removeLast()   // 2
 ```
 
-### Import specific modules
+## Technical Approach
 
-```swift
-import BitCollections
-import DequeModule
-import HashTreeCollections
-import HeapModule
-import OrderedCollections
+This implementation follows the pattern established by [liamnichols/swift-collections-specs](https://github.com/liamnichols/swift-collections-specs):
 
-// Use specific collection types
-var bitSet: BitSet = [1, 3, 5, 7, 9]
-var orderedSet: OrderedSet<String> = ["apple", "banana", "cherry"]
-var heap: Heap<Int> = [3, 1, 4, 1, 5, 9, 2, 6]
-```
+1. **Individual Pods**: Each module is published as a separate pod to avoid dependency conflicts
+2. **Unique Naming**: Pod names are prefixed with "SwiftCollections-" to avoid conflicts with existing pods
+3. **Internal Dependencies**: Each pod includes the necessary InternalCollectionsUtilities files
+4. **Compilation Conditions**: Proper Swift compilation conditions are set for testing
 
-## Available Collections
+## Challenges and Solutions
 
-### BitCollections
-- **BitSet**: A dynamic bit set with efficient set operations
-- **BitArray**: A dynamic bit array with efficient bitwise operations
+### Challenge: Complex Internal Dependencies
+The original Swift Collections package has intricate internal module dependencies that are difficult to resolve in CocoaPods.
 
-### DequeModule
-- **Deque**: A double-ended queue backed by a ring buffer
+**Solution**: Each pod includes the necessary InternalCollectionsUtilities files directly, avoiding cross-module dependencies.
 
-### HashTreeCollections
-- **TreeSet**: A persistent hashed set implementing CHAMP
-- **TreeDictionary**: A persistent hashed dictionary implementing CHAMP
+### Challenge: Swift Version Compatibility
+Some features require newer Swift versions that may not be available in all environments.
 
-### HeapModule
-- **Heap**: A min-max heap backed by an array, suitable for priority queues
+**Solution**: Fixed syntax issues and removed unsupported features like `nonisolated(unsafe)`.
 
-### OrderedCollections
-- **OrderedSet**: An ordered variant of Set with well-defined item order
-- **OrderedDictionary**: An ordered variant of Dictionary
+### Challenge: Name Conflicts
+Many pod names are already taken in the CocoaPods registry.
 
-## Requirements
+**Solution**: Used unique prefixed names like "SwiftCollections-Deque".
 
-- iOS 17.0+
-- macOS 10.15+
-- tvOS 17.0+
-- watchOS 10.0+
-- Swift 5.10.0+
+## Development Status
 
-## Example
+- ✅ **SwiftCollections-Deque**: Published and working
+- 🚧 **SwiftCollections-OrderedCollections**: In development (compilation issues)
+- 🚧 **SwiftCollections-Collections**: In development (dependency issues)
 
-See the `Example/` directory for a complete iOS project demonstrating usage of all collection types.
+## Contributing
+
+This project follows the same approach as [liamnichols/swift-collections-specs](https://github.com/liamnichols/swift-collections-specs). If you encounter issues:
+
+1. For CocoaPods-specific issues: Create an issue in this repository
+2. For Swift Collections package issues: Create an issue in the [official repository](https://github.com/apple/swift-collections)
+
+## References
+
+- [Official Swift Collections Package](https://github.com/apple/swift-collections)
+- [liamnichols/swift-collections-specs](https://github.com/liamnichols/swift-collections-specs) - Original CocoaPods implementation
+- [SwiftCollections-Deque on CocoaPods](https://cocoapods.org/pods/SwiftCollections-Deque)
 
 ## License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE.txt](LICENSE.txt) file for details.
-
-## Original Project
-
-This is a fork of [Apple's swift-collections](https://github.com/apple/swift-collections) project, adapted for CocoaPods distribution. The original project is maintained by Apple and the Swift community. 
+This project is licensed under the Apache License 2.0, same as the original Swift Collections package. 
