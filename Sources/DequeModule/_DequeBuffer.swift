@@ -41,7 +41,7 @@ extension _DequeBuffer: CustomStringConvertible {
 
 /// The type-punned empty singleton storage instance.
 @usableFromInline
-nonisolated(unsafe) internal let _emptyDequeStorage
+internal let _emptyDequeStorage
   = _DequeBuffer<Void>.create(
     minimumCapacity: 0,
     makingHeaderWith: { _ in

@@ -33,7 +33,7 @@ Pod::Spec.new do |spec|
     collections.dependency "swift-collections/RopeModule"
     collections.pod_target_xcconfig = {
       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      'SWIFT_VERSION' => '5.10.0'
+      
     }
   end
   
@@ -43,8 +43,7 @@ Pod::Spec.new do |spec|
     bitcollections.exclude_files = "Sources/BitCollections/CMakeLists.txt"
     bitcollections.dependency "swift-collections/InternalCollectionsUtilities"
     bitcollections.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      'SWIFT_VERSION' => '5.10.0'
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING'
     }
   end
   
@@ -55,7 +54,7 @@ Pod::Spec.new do |spec|
     deque.dependency "swift-collections/InternalCollectionsUtilities"
     deque.pod_target_xcconfig = {
       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      'SWIFT_VERSION' => '5.10.0'
+      
     }
   end
   
@@ -66,7 +65,7 @@ Pod::Spec.new do |spec|
     hashtree.dependency "swift-collections/InternalCollectionsUtilities"
     hashtree.pod_target_xcconfig = {
       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      'SWIFT_VERSION' => '5.10.0'
+      
     }
   end
   
@@ -77,7 +76,7 @@ Pod::Spec.new do |spec|
     heap.dependency "swift-collections/InternalCollectionsUtilities"
     heap.pod_target_xcconfig = {
       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      'SWIFT_VERSION' => '5.10.0'
+      
     }
   end
   
@@ -88,7 +87,7 @@ Pod::Spec.new do |spec|
     ordered.dependency "swift-collections/InternalCollectionsUtilities"
     ordered.pod_target_xcconfig = {
       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      'SWIFT_VERSION' => '5.10.0'
+      
     }
   end
   
@@ -99,7 +98,7 @@ Pod::Spec.new do |spec|
     rope.dependency "swift-collections/InternalCollectionsUtilities"
     rope.pod_target_xcconfig = {
       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      'SWIFT_VERSION' => '5.10.0'
+      
     }
   end
   
@@ -123,7 +122,7 @@ Pod::Spec.new do |spec|
     ]
     internal.pod_target_xcconfig = {
       'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      'SWIFT_VERSION' => '5.10.0'
+      
     }
   end
   
@@ -132,7 +131,6 @@ Pod::Spec.new do |spec|
   
   # Compiler flags
   spec.pod_target_xcconfig = {
-    'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-    'SWIFT_VERSION' => '5.10.0'
+    'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING'
   }
 end 
