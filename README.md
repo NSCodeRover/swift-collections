@@ -85,6 +85,8 @@ The following table maps package releases to their minimum required Swift toolch
 
 ## Using **Swift Collections** in your project
 
+### Swift Package Manager
+
 To use this package in a SwiftPM project, you need to set it up as a package dependency:
 
 ```swift
@@ -109,6 +111,32 @@ let package = Package(
   ]
 )
 ```
+
+### CocoaPods
+
+This repository also supports CocoaPods. Add the following to your `Podfile`:
+
+```ruby
+pod 'swift-collections', :git => 'https://github.com/NSCodeRover/swift-collections.git', :tag => '1.2.0'
+```
+
+Then run:
+```bash
+pod install
+```
+
+You can also import specific modules individually:
+
+```ruby
+# Only specific modules
+pod 'swift-collections/BitCollections'
+pod 'swift-collections/DequeModule'
+pod 'swift-collections/HashTreeCollections'
+pod 'swift-collections/HeapModule'
+pod 'swift-collections/OrderedCollections'
+```
+
+For more detailed CocoaPods usage instructions, see [COCOAPODS.md](COCOAPODS.md).
 
 ## Contributing to Swift Collections
 

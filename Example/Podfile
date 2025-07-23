@@ -1,0 +1,18 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '17.0'
+
+target 'SwiftCollectionsExample' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pod for swift-collections
+  pod 'swift-collections', :git => 'https://github.com/NSCodeRover/swift-collections.git', :tag => '1.2.0'
+  
+  # Or use specific modules only:
+  # pod 'swift-collections/BitCollections'
+  # pod 'swift-collections/DequeModule'
+  # pod 'swift-collections/HashTreeCollections'
+  # pod 'swift-collections/HeapModule'
+  # pod 'swift-collections/OrderedCollections'
+
+end 
