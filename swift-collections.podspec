@@ -16,13 +16,11 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/NSCodeRover/swift-collections"
   spec.license      = { :type => "Apache-2.0", :file => "LICENSE.txt" }
   spec.author       = { "Apple Inc." => "swift-dev@swift.org" }
-  spec.source       = { :git => "https://github.com/NSCodeRover/swift-collections.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/NSCodeRover/swift-collections.git", :branch => "main" }
   
   spec.swift_version = "5.10.0"
   spec.ios.deployment_target = "17.0"
   spec.macos.deployment_target = "10.15"
-  spec.tvos.deployment_target = "17.0"
-  spec.watchos.deployment_target = "10.0"
   
   # Main Collections module (includes all other modules)
   spec.subspec "Collections" do |collections|
@@ -33,6 +31,10 @@ Pod::Spec.new do |spec|
     collections.dependency "swift-collections/HeapModule"
     collections.dependency "swift-collections/OrderedCollections"
     collections.dependency "swift-collections/RopeModule"
+    collections.pod_target_xcconfig = {
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
+      'SWIFT_VERSION' => '5.10.0'
+    }
   end
   
   # BitCollections module
@@ -40,6 +42,10 @@ Pod::Spec.new do |spec|
     bitcollections.source_files = "Sources/BitCollections/**/*.swift"
     bitcollections.exclude_files = "Sources/BitCollections/CMakeLists.txt"
     bitcollections.dependency "swift-collections/InternalCollectionsUtilities"
+    bitcollections.pod_target_xcconfig = {
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
+      'SWIFT_VERSION' => '5.10.0'
+    }
   end
   
   # DequeModule
@@ -47,6 +53,10 @@ Pod::Spec.new do |spec|
     deque.source_files = "Sources/DequeModule/**/*.swift"
     deque.exclude_files = "Sources/DequeModule/CMakeLists.txt"
     deque.dependency "swift-collections/InternalCollectionsUtilities"
+    deque.pod_target_xcconfig = {
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
+      'SWIFT_VERSION' => '5.10.0'
+    }
   end
   
   # HashTreeCollections module
@@ -54,6 +64,10 @@ Pod::Spec.new do |spec|
     hashtree.source_files = "Sources/HashTreeCollections/**/*.swift"
     hashtree.exclude_files = "Sources/HashTreeCollections/CMakeLists.txt"
     hashtree.dependency "swift-collections/InternalCollectionsUtilities"
+    hashtree.pod_target_xcconfig = {
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
+      'SWIFT_VERSION' => '5.10.0'
+    }
   end
   
   # HeapModule
@@ -61,6 +75,10 @@ Pod::Spec.new do |spec|
     heap.source_files = "Sources/HeapModule/**/*.swift"
     heap.exclude_files = "Sources/HeapModule/CMakeLists.txt"
     heap.dependency "swift-collections/InternalCollectionsUtilities"
+    heap.pod_target_xcconfig = {
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
+      'SWIFT_VERSION' => '5.10.0'
+    }
   end
   
   # OrderedCollections module
@@ -68,6 +86,10 @@ Pod::Spec.new do |spec|
     ordered.source_files = "Sources/OrderedCollections/**/*.swift"
     ordered.exclude_files = "Sources/OrderedCollections/CMakeLists.txt"
     ordered.dependency "swift-collections/InternalCollectionsUtilities"
+    ordered.pod_target_xcconfig = {
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
+      'SWIFT_VERSION' => '5.10.0'
+    }
   end
   
   # RopeModule (internal)
@@ -75,6 +97,10 @@ Pod::Spec.new do |spec|
     rope.source_files = "Sources/RopeModule/**/*.swift"
     rope.exclude_files = "Sources/RopeModule/CMakeLists.txt"
     rope.dependency "swift-collections/InternalCollectionsUtilities"
+    rope.pod_target_xcconfig = {
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
+      'SWIFT_VERSION' => '5.10.0'
+    }
   end
   
   # Internal utilities (hidden dependency)
@@ -95,6 +121,10 @@ Pod::Spec.new do |spec|
       "Sources/InternalCollectionsUtilities/UnsafeBufferPointer+Extras.swift.gyb",
       "Sources/InternalCollectionsUtilities/UnsafeMutableBufferPointer+Extras.swift.gyb"
     ]
+    internal.pod_target_xcconfig = {
+      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
+      'SWIFT_VERSION' => '5.10.0'
+    }
   end
   
   # Default to Collections module
