@@ -9,7 +9,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-import InternalCollectionsUtilities
 
 extension BitSet {
   /// Returns a Boolean value that indicates whether the given element exists

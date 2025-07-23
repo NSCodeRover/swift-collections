@@ -9,7 +9,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-import InternalCollectionsUtilities
 
 #if false
 // FIXME: Bitwise operators disabled for now. I have two concerns:

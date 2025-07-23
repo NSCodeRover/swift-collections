@@ -9,7 +9,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-import InternalCollectionsUtilities
 
 extension BitArray {
   /// Create and return a new bit array consisting of `count` random bits,

@@ -10,7 +10,6 @@
 //===----------------------------------------------------------------------===//
 
 #if !COLLECTIONS_SINGLE_MODULE
-import InternalCollectionsUtilities
 #endif
 
 // FIXME: These are non-standard extensions generalizing ==.

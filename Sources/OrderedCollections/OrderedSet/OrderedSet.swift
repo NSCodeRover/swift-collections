@@ -10,7 +10,6 @@
 //===----------------------------------------------------------------------===//
 
 #if !COLLECTIONS_SINGLE_MODULE
-import InternalCollectionsUtilities
 #endif
 
 /// An ordered collection of unique elements.

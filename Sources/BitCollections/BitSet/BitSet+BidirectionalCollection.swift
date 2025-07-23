@@ -9,7 +9,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-import InternalCollectionsUtilities
 
 extension BitSet: Sequence {
   /// The type representing the bit set's elements.

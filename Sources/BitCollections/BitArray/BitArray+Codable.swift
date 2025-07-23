@@ -9,7 +9,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-import InternalCollectionsUtilities
 
 extension BitArray: Codable {
   /// Encodes this bit array into the given encoder.

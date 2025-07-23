@@ -10,7 +10,6 @@
 //===----------------------------------------------------------------------===//
 
 #if !COLLECTIONS_SINGLE_MODULE
-import InternalCollectionsUtilities
 #endif
 
 internal struct _ChunkedBitsForwardIterator {
