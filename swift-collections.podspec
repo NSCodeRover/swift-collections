@@ -22,112 +22,39 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "17.0"
   spec.macos.deployment_target = "10.15"
   
-  # Main Collections module (includes all other modules)
-  spec.subspec "Collections" do |collections|
-    collections.source_files = "Sources/Collections/**/*.swift"
-    collections.dependency "swift-collections/BitCollections"
-    collections.dependency "swift-collections/DequeModule"
-    collections.dependency "swift-collections/HashTreeCollections"
-    collections.dependency "swift-collections/HeapModule"
-    collections.dependency "swift-collections/OrderedCollections"
-    collections.dependency "swift-collections/RopeModule"
-    collections.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      
-    }
-  end
+  # Include all source files in a single module
+  spec.source_files = [
+    "Sources/Collections/**/*.swift",
+    "Sources/BitCollections/**/*.swift",
+    "Sources/DequeModule/**/*.swift",
+    "Sources/HashTreeCollections/**/*.swift",
+    "Sources/HeapModule/**/*.swift",
+    "Sources/OrderedCollections/**/*.swift",
+    "Sources/RopeModule/**/*.swift",
+    "Sources/InternalCollectionsUtilities/**/*.swift"
+  ]
   
-  # BitCollections module
-  spec.subspec "BitCollections" do |bitcollections|
-    bitcollections.source_files = "Sources/BitCollections/**/*.swift"
-    bitcollections.exclude_files = "Sources/BitCollections/CMakeLists.txt"
-    bitcollections.dependency "swift-collections/InternalCollectionsUtilities"
-    bitcollections.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING'
-    }
-  end
-  
-  # DequeModule
-  spec.subspec "DequeModule" do |deque|
-    deque.source_files = "Sources/DequeModule/**/*.swift"
-    deque.exclude_files = "Sources/DequeModule/CMakeLists.txt"
-    deque.dependency "swift-collections/InternalCollectionsUtilities"
-    deque.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      
-    }
-  end
-  
-  # HashTreeCollections module
-  spec.subspec "HashTreeCollections" do |hashtree|
-    hashtree.source_files = "Sources/HashTreeCollections/**/*.swift"
-    hashtree.exclude_files = "Sources/HashTreeCollections/CMakeLists.txt"
-    hashtree.dependency "swift-collections/InternalCollectionsUtilities"
-    hashtree.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      
-    }
-  end
-  
-  # HeapModule
-  spec.subspec "HeapModule" do |heap|
-    heap.source_files = "Sources/HeapModule/**/*.swift"
-    heap.exclude_files = "Sources/HeapModule/CMakeLists.txt"
-    heap.dependency "swift-collections/InternalCollectionsUtilities"
-    heap.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      
-    }
-  end
-  
-  # OrderedCollections module
-  spec.subspec "OrderedCollections" do |ordered|
-    ordered.source_files = "Sources/OrderedCollections/**/*.swift"
-    ordered.exclude_files = "Sources/OrderedCollections/CMakeLists.txt"
-    ordered.dependency "swift-collections/InternalCollectionsUtilities"
-    ordered.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      
-    }
-  end
-  
-  # RopeModule (internal)
-  spec.subspec "RopeModule" do |rope|
-    rope.source_files = "Sources/RopeModule/**/*.swift"
-    rope.exclude_files = "Sources/RopeModule/CMakeLists.txt"
-    rope.dependency "swift-collections/InternalCollectionsUtilities"
-    rope.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      
-    }
-  end
-  
-  # Internal utilities (hidden dependency)
-  spec.subspec "InternalCollectionsUtilities" do |internal|
-    internal.source_files = "Sources/InternalCollectionsUtilities/**/*.swift"
-    internal.exclude_files = [
-      "Sources/InternalCollectionsUtilities/CMakeLists.txt",
-      "Sources/InternalCollectionsUtilities/Debugging.swift.gyb",
-      "Sources/InternalCollectionsUtilities/Descriptions.swift.gyb",
-      "Sources/InternalCollectionsUtilities/IntegerTricks/FixedWidthInteger+roundUpToPowerOfTwo.swift.gyb",
-      "Sources/InternalCollectionsUtilities/IntegerTricks/Integer rank.swift.gyb",
-      "Sources/InternalCollectionsUtilities/IntegerTricks/UInt+first and last set bit.swift.gyb",
-      "Sources/InternalCollectionsUtilities/IntegerTricks/UInt+reversed.swift.gyb",
-      "Sources/InternalCollectionsUtilities/RandomAccessCollection+Offsets.swift.gyb",
-      "Sources/InternalCollectionsUtilities/UnsafeBitSet/_UnsafeBitSet+Index.swift.gyb",
-      "Sources/InternalCollectionsUtilities/UnsafeBitSet/_UnsafeBitSet+_Word.swift.gyb",
-      "Sources/InternalCollectionsUtilities/UnsafeBitSet/_UnsafeBitSet.swift.gyb",
-      "Sources/InternalCollectionsUtilities/UnsafeBufferPointer+Extras.swift.gyb",
-      "Sources/InternalCollectionsUtilities/UnsafeMutableBufferPointer+Extras.swift.gyb"
-    ]
-    internal.pod_target_xcconfig = {
-      'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'COLLECTIONS_RANDOMIZED_TESTING',
-      
-    }
-  end
-  
-  # Default to Collections module
-  spec.default_subspecs = "Collections"
+  spec.exclude_files = [
+    "Sources/BitCollections/CMakeLists.txt",
+    "Sources/DequeModule/CMakeLists.txt",
+    "Sources/HashTreeCollections/CMakeLists.txt",
+    "Sources/HeapModule/CMakeLists.txt",
+    "Sources/OrderedCollections/CMakeLists.txt",
+    "Sources/RopeModule/CMakeLists.txt",
+    "Sources/InternalCollectionsUtilities/CMakeLists.txt",
+    "Sources/InternalCollectionsUtilities/Debugging.swift.gyb",
+    "Sources/InternalCollectionsUtilities/Descriptions.swift.gyb",
+    "Sources/InternalCollectionsUtilities/IntegerTricks/FixedWidthInteger+roundUpToPowerOfTwo.swift.gyb",
+    "Sources/InternalCollectionsUtilities/IntegerTricks/Integer rank.swift.gyb",
+    "Sources/InternalCollectionsUtilities/IntegerTricks/UInt+first and last set bit.swift.gyb",
+    "Sources/InternalCollectionsUtilities/IntegerTricks/UInt+reversed.swift.gyb",
+    "Sources/InternalCollectionsUtilities/RandomAccessCollection+Offsets.swift.gyb",
+    "Sources/InternalCollectionsUtilities/UnsafeBitSet/_UnsafeBitSet+Index.swift.gyb",
+    "Sources/InternalCollectionsUtilities/UnsafeBitSet/_UnsafeBitSet+_Word.swift.gyb",
+    "Sources/InternalCollectionsUtilities/UnsafeBitSet/_UnsafeBitSet.swift.gyb",
+    "Sources/InternalCollectionsUtilities/UnsafeBufferPointer+Extras.swift.gyb",
+    "Sources/InternalCollectionsUtilities/UnsafeMutableBufferPointer+Extras.swift.gyb"
+  ]
   
   # Compiler flags
   spec.pod_target_xcconfig = {
